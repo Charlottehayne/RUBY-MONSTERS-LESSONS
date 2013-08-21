@@ -15,7 +15,7 @@ class ContactsController < ApplicationController
 
   # method for presenting the form for adding new contact
   def new
-    @contact = Contact.new 
+    @contact = Contact.new
   end
 
   # this is where we will actually create the contact based on the passed data
@@ -28,4 +28,14 @@ class ContactsController < ApplicationController
     Contact.find(params[:id]).destroy
     redirect_to contacts_path
   end
+ def edit
+    
+    @contact = Contact.find(params[:id])
+  end 
+  def update
+    @contact=Contact.find(params[:id])
+    @contact.update_attributes(params[:contact])
+    redirect_to contact_path(@contact)#redirecting to show the action. so not going back to the contacts index page but directly showing your new update.
+  end
+    
 end 
